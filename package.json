@@ -4,18 +4,21 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "node server.js",
+    "dev": "nodemon server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^2.2.0",
     "ejs": "^3.1.10",
-    "express": "^5.1.0",
-    "laboratory-classes-3-final": "file:"
+    "express": "^5.1.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.9"
   }
 }
+
+
+
 
