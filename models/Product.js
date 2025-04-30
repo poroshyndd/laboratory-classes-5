@@ -1,7 +1,8 @@
 class Product {
-  constructor(name, description) {
+  constructor(name, description, price) {
     this.name = name;
     this.description = description;
+    this.price = price;
   }
 
   static #products = [];
@@ -29,6 +30,10 @@ class Product {
 
     return this.#products[this.#products.length - 1];
   }
+}
+
+module.exports = Product;
+
 }
 
 module.exports = Product;
