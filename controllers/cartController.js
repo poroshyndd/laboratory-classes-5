@@ -4,8 +4,10 @@ const { STATUS_CODE } = require("../constants/statusCode");
 
 exports.addProductToCart = (request, response) => {
   Product.add(request.body);
-  const { name, quantity = 1 } = request.body;
-  Cart.add(name, quantity);
+
+  const { name, quantity } = request.body;
+  Cart.add(name, Number(quantity));
+
   response.status(STATUS_CODE.FOUND).redirect("/products/new");
 };
 
