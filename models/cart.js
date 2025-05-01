@@ -3,18 +3,12 @@ const Product = require('./Product');
 class Cart {
   static #items = [];
 
-  static add(productName, quantity) {
+  static add(productName, quantity = 1) {
     const product = Product.findByName(productName);
-    if (!product) {
-      throw new Error(`Produkt o nazwie "${productName}" nie istnieje.`);
-    }
-
-    const existingItem = this.#items.find(item => item.product.name === productName);
-    if (existingItem) {
-      existingItem.quantity += quantity;
-    } else {
-      this.#items.push({ product, quantity });
-    }
+    if (!product) throw new Error(`Product "${productName}" not found`);
+    const item = this.#items.find(i => i.product.name === productName);
+    if (item) item.quantity += quantity;
+    else this.#items.push({ product, quantity });
   }
 
   static getItems() {
@@ -22,14 +16,11 @@ class Cart {
   }
 
   static getTotalPrice() {
-    return this.#items.reduce(
-      (total, { product, quantity }) => total + product.price * quantity,
-      0
-    );
+    return this.#items.reduce((sum, i) => sum + i.product.price * i.quantity, 0);
   }
 
   static getProductsQuantity() {
-    return this.#items.reduce((sum, { quantity }) => sum + quantity, 0);
+    return this.#items.reduce((sum, i) => sum + i.quantity, 0);
   }
 
   static clearCart() {
