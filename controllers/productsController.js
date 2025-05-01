@@ -23,7 +23,6 @@ exports.getAddProductView = (request, response) => {
   });
 };
 
-
 exports.getNewProductView = (request, response) => {
   const newestProduct = Product.getLast();
 
