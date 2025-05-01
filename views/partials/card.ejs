@@ -1,24 +1,17 @@
 <div class="card">
-    <img
-      src="https://via.placeholder.com/150"
-      alt="<%= product.name %>"
-      class="card__image"
-    />
-  
-    <h3 class="card__title"><%= product.name %></h3>
-
-    <p class="card__description"><%= product.description %></p>
-  
-    <p class="card__price"><%= product.price %> PLN</p>
-  
-    <a href="/products/<%= encodeURIComponent(product.name) %>" class="card__link">
-      View Product
-    </a>
-  
-    <form action="/products/<%= encodeURIComponent(product.name) %>?_method=DELETE" method="POST" class="card__delete-form">
-      <button type="submit" class="card__delete-button">
-        Remove
-      </button>
-    </form>
-  </div>
-  
+  <img
+    src="https://via.placeholder.com/150"
+    alt="<%= product.name %>"
+    class="card__image"
+  />
+  <h3 class="card__title"><%= product.name %></h3>
+  <p class="card__description"><%= product.description %></p>
+  <p class="card__price">$<%= product.price.toFixed(2) %></p>
+  <a href="/products/<%= encodeURIComponent(product.name) %>" class="card__link">View Details</a>
+  <button
+    class="card__delete"
+    onclick="fetch('/products/<%= encodeURIComponent(product.name) %>', { method: 'DELETE' })
+      .then(res => res.json())
+      .then(() => location.reload())
+    ">Delete</button>
+</div>
