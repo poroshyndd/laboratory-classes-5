@@ -16,18 +16,15 @@ class Product {
   }
 
   static findByName(name) {
-    return this.#products.find((product) => product.name === name);
+    return this.#products.find(p => p.name === name);
   }
 
   static deleteByName(name) {
-    this.#products = this.#products.filter((product) => product.name !== name);
+    this.#products = this.#products.filter(p => p.name !== name);
   }
 
   static getLast() {
-    if (!this.#products.length) {
-      return;
-    }
-
+    if (!this.#products.length) return;
     return this.#products[this.#products.length - 1];
   }
 }
